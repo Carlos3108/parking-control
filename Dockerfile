@@ -1,13 +1,13 @@
-FROM bellsoft/liberica-openjdk-debian:21-cds as build-stage
+FROM bellsoft/liberica-openjdk-debian:8-cds AS build-stage
 WORKDIR /usr/src/app
 
 # Copia os arquivos necessários
 COPY . ./
 
-RUN chmod a+x ./mvnw && ./mvnw clean package -DskipTests
+RUN ./mvnw clean package -DskipTests
 
 
-FROM bellsoft/liberica-openjre-debian:21-cds as java
+FROM bellsoft/liberica-openjre-debian:8-cds AS java
 WORKDIR /usr/src/app
 
 # Copia os arquivos necessários
